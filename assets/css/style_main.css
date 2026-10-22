@@ -1,1 +1,331 @@
+/* 1. Reset & Global Box Model FIRST */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+:root {
+  --text-main: #222222;
+  --text-muted: #666666;
+  --text-light: #888888;
+  --link-color: #0366d6;
+  --border-color: #eeeeee;
+  --bg-color: #ffffff;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* 2. Lock Scrollbar to prevent layout jump across all pages */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Container Layout --- */
+.layout {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* --- Responsive Sidebar --- */
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: #eee;
+}
+
+.profile-meta h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.profile-meta p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 0.25rem 0;
+}
+
+.nav-links a.active {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.social-links a {
+  color: var(--text-muted);
+  padding: 0.2rem 0;
+}
+
+.social-links a:hover {
+  color: var(--text-main);
+}
+
+/* --- Content Areas --- */
+.content {
+  flex: 1;
+  min-width: 0; /* Keeps all pages identical width regardless of contents */
+  width: 100%;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+.desktop-only-title {
+  display: none;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Publication Lists */
+.pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pub-list li {
+  font-size: 0.95rem;
+}
+
+.links {
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: inline-block;
+}
+
+/* CV Lists */
+.cv-entry {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.cv-meta {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.cv-sub {
+  color: var(--text-muted);
+}
+
+.cv-date {
+  font-family: var(--font-mono);
+  color: var(--text-light);
+  font-size: 0.85rem;
+}
+
+/* News Lists */
+.news-list {
+  list-style: none;
+  padding: 0; /* Explicitly reset to match .pub-list */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.news-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.news-date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.news-text {
+  color: var(--text-main);
+  flex: 1;
+}
+
+/* Research Tags */
+.research-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+  margin-left: 1.5rem !important; /* Indents the entire list */
+}
+
+.research-list li {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.research-list li::before {
+  content: "-";
+  margin-right: 0.6rem;
+  color: var(--text-light);
+}
+
+/* --- Desktop Layout (min-width: 768px) --- */
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+    gap: 4.5rem;
+    padding: 4rem 1.5rem;
+    align-items: flex-start;
+  }
+
+  .side-nav {
+    width: 150px;
+    position: sticky;
+    top: 4rem;
+    flex-shrink: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    gap: 1.5rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .profile-photo {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-meta {
+    display: none;
+  }
+
+  .desktop-only-title {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .desktop-only-title h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .desktop-only-title p {
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .social-links {
+    flex-direction: column;
+    gap: 0.4rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.25rem;
+  }
+
+  .cv-entry {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .cv-desc {
+    flex: 1;
+  }
+
+  .cv-date {
+    text-align: right;
+    min-width: 100px;
+  }
+
+  .news-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+
+  .news-date {
+    min-width: 90px;
+    flex-shrink: 0;
+  }
+}
